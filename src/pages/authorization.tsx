@@ -6,14 +6,11 @@ import Header from "../components/header";
 import {ISetUser} from "../utils/types";
 
 const AuthPage: FC<ISetUser> = ({setUser}) => {
-  const [error, setError] = useState("");
-
   return (
     <>
       <Header />
       <Container>
-        <ErrorField>{error}</ErrorField>
-        <AuthForm setUser={setUser} setError={setError} />
+        <AuthForm setUser={setUser} />
       </Container>
     </>
   );

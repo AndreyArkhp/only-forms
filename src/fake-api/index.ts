@@ -23,7 +23,7 @@ const fakeFetch = (data: FieldValues): Promise<IResponse> => {
         response.login = data.login;
         resolve(response);
       }
-    }, 2000);
+    }, Math.random() * 2000);
   });
 };
 

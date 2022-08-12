@@ -4,22 +4,24 @@ import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 import fakeFetch from "../fake-api";
-import {IAuthFormProps, IResponse} from "../utils/types";
+import {IResponse, ISetUser} from "../utils/types";
+import ErrorField from "./error-field";
 
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  height: 17.6041vw;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const FormGroup = styled.div`
   position: relative;
+  margin-block-end: 3.125%;
 `;
 
 const FormCheckboxGroup = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const FormLabel = styled.label<{for?: string}>`
@@ -46,10 +48,36 @@ const FormInput = styled.input`
   color: #232323;
 `;
 
-const FormInputCheckbox = styled.input`
+const CheckboxRect = styled.div`
+  width: 100%;
+  aspect-ratio: 1;
+  background: #4a67ff;
+  border-radius: 2px;
+  opacity: 0;
+`;
+
+const FormCustomCheckbox = styled.div`
   width: 3.125%;
   aspect-ratio: 1;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 0.15625vw;
+  position: absolute;
+  content: "";
+  bottom: 20px;
+  left: 0;
+  box-sizing: border-box;
+  z-index: -1;
+`;
+
+const FormInputCheckboxHidden = styled.input`
+  opacity: 0;
   margin-inline-end: 2.1875%;
+  width: 3.2%;
+  aspect-ratio: 1;
+  &:checked ~ ${FormCustomCheckbox} > ${CheckboxRect} {
+    opacity: 1;
+  }
 `;
 
 const FormBtn = styled.button`
@@ -68,8 +96,15 @@ const FormBtn = styled.button`
   }
 `;
 
-const AuthForm: FC<IAuthFormProps> = ({setUser, setError}) => {
+const FormErrorString = styled.p`
+  margin: 1.875% 0 0 0;
+  color: #e26f6f;
+  font: normal 400 14px/17px "HN", Helvetica, sans-serif;
+`;
+
+const AuthForm: FC<ISetUser> = ({setUser}) => {
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const {
@@ -102,18 +137,23 @@ const AuthForm: FC<IAuthFormProps> = ({setUser, setError}) => {
 
   return (
     <FormStyled onSubmit={onSubmit}>
+      <ErrorField>{error}</ErrorField>
       <FormGroup>
         <FormLabel for="text">Логин</FormLabel>
         <FormInput id="text" type="text" {...register("login", {required: true})} />
+        {errors.login && <FormErrorString>Обязательное поле</FormErrorString>}
       </FormGroup>
-      {errors.login && <p>Обязательное поле</p>}
+
       <FormGroup>
         <FormLabel for="password">Пароль </FormLabel>
         <FormInput id="password" type="password" {...register("password", {required: true})} />
 
-        {errors.password && <p>Обязательное поле</p>}
+        {errors.password && <FormErrorString>Обязательное поле</FormErrorString>}
         <FormCheckboxGroup>
-          <FormInputCheckbox id="checkbox" type="checkbox" {...register("remember")} />
+          <FormInputCheckboxHidden id="checkbox" type="checkbox" {...register("remember")} />
+          <FormCustomCheckbox>
+            <CheckboxRect />
+          </FormCustomCheckbox>
           <FormLabelForCheck for="checkbox">Запомнить пароль</FormLabelForCheck>
         </FormCheckboxGroup>
       </FormGroup>

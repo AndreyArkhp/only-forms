@@ -11,7 +11,7 @@ const ErrorFieldStyled = styled.p<{error: string}>`
   margin-block-end: 2.5vh;
   display: ${(props) => props.error};
   align-items: center;
-  font: normal 400 14px/17px "HN", Helvetica, sans-serif;
+  font: normal 400 14px/17px Helvetica, sans-serif;
 `;
 
 const ErrorImage = styled.img`

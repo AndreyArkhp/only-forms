@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.main`
-  width: 100%;
   max-width: 1920px;
-  aspect-ratio: 16/9;
+  height: 56.25vw;
+  max-height: 78vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
