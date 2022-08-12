@@ -1,7 +1,6 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import AuthForm from "../components/authorization-form";
 import Container from "../components/container";
-import ErrorField from "../components/error-field";
 import Header from "../components/header";
 import {ISetUser} from "../utils/types";
 
