@@ -8,11 +8,12 @@ const response: IResponse = {
 };
 
 const fakeFetch = (data: FieldValues): Promise<IResponse> => {
+  const login = data.login.replace(/\s+/g, "");
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (data.login !== user.email) {
+      if (login !== user.email) {
         response.error = {
-          login: `Пользователя ${data.login} не существует`,
+          login: `Пользователя ${login} не существует`,
         };
         resolve(response);
       } else if (data.password !== user.password) {
@@ -20,7 +21,7 @@ const fakeFetch = (data: FieldValues): Promise<IResponse> => {
         resolve(response);
       } else {
         delete response.error;
-        response.login = data.login;
+        response.login = login;
         resolve(response);
       }
     }, Math.random() * 2000);

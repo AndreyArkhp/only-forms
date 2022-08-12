@@ -30,7 +30,7 @@ const FormLabel = styled.label<{for?: string}>`
   margin-block-end: 0.9259vh;
 `;
 
-const FormLabelForCheck = styled.label<{for?: string}>`
+const FormLabelForCheck = styled.label`
   font: normal 400 16px/19px "HN", Arial, sans-serif;
   margin-block-start: 3.85%;
   margin-block-end: 3.125%;
@@ -139,13 +139,13 @@ const AuthForm: FC<ISetUser> = ({setUser}) => {
     <FormStyled onSubmit={onSubmit}>
       <ErrorField>{error}</ErrorField>
       <FormGroup>
-        <FormLabel for="text">Логин</FormLabel>
+        <FormLabel htmlFor="text">Логин</FormLabel>
         <FormInput id="text" type="text" {...register("login", {required: true})} />
         {errors.login && <FormErrorString>Обязательное поле</FormErrorString>}
       </FormGroup>
 
       <FormGroup>
-        <FormLabel for="password">Пароль </FormLabel>
+        <FormLabel htmlFor="password">Пароль </FormLabel>
         <FormInput id="password" type="password" {...register("password", {required: true})} />
 
         {errors.password && <FormErrorString>Обязательное поле</FormErrorString>}
@@ -154,7 +154,7 @@ const AuthForm: FC<ISetUser> = ({setUser}) => {
           <FormCustomCheckbox>
             <CheckboxRect />
           </FormCustomCheckbox>
-          <FormLabelForCheck for="checkbox">Запомнить пароль</FormLabelForCheck>
+          <FormLabelForCheck htmlFor="checkbox">Запомнить пароль</FormLabelForCheck>
         </FormCheckboxGroup>
       </FormGroup>
 
