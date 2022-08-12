@@ -9,7 +9,7 @@ const HeaderEl = styled.header`
 const Title = styled.h1`
   text-align: center;
   margin: 0;
-  font: normal 700 64px/78px Arial, sans-serif;
+  font: normal 700 64px/78px "HN", Arial, sans-serif;
 `;
 
 const Header = () => {

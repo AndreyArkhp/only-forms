@@ -1,5 +1,13 @@
 @font-face {
-  font-family: "Helvetica Neue";
+  font-family: "HN";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./helvetica-neue/helveticaneue.woff2"),
+    url("./helvetica-neue/HelveticaNeue.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HN";
   font-style: normal;
   font-weight: 700;
   src: url("./helvetica-neue/Helvetica\ Neu\ Bold.woff2") format("woff2");

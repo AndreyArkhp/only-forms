@@ -18,3 +18,7 @@ export interface IUser {
 export interface ISetUser {
   setUser: Dispatch<IUser>;
 }
+
+export interface IAuthFormProps extends ISetUser {
+  setError: Dispatch<string>;
+}

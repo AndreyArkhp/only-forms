@@ -6,6 +6,7 @@ const Container = styled.main`
   aspect-ratio: 16/9;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
